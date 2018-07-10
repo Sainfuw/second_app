@@ -3,30 +3,26 @@
 <h1 class="mb-3">Students</h1>
 <div class="row">
   <div class="col-md-11 mx-auto bg-dark">
-    <% if @students.any? %>
-      <table class="table table-hover">
-        <thead>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th></th><th></th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student| %>
           <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th></th><th></th><th></th>
+            <td><%= student.name %></td>
+            <td><%= student.age %></td>
+            <td><%= link_to 'Show', student, class: 'btn btn-primary mr-2' %></td>
+            <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-success mr-2' %></td>
+            <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mr-2' %></td>
           </tr>
-        </thead>
-        <tbody>
-          <% @students.each do |student| %>
-            <tr>
-              <td><%= student.name %></td>
-              <td><%= student.age %></td>
-              <td><%= link_to 'Show', student, class: 'btn btn-primary mr-2' %></td>
-              <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-success mr-2' %></td>
-              <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mr-2' %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <h3>El estudiante: <% params[:query] %> no existe! </h3>
-    <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 <br><br>
